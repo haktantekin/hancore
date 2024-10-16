@@ -1,9 +1,11 @@
 export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonVariant = 'color' | 'gradient';
+export type LoaderPosition = 'left' | 'center' | 'right';
 
-export interface Gradient {
+export interface GradientProps {
   from: string;
   to: string;
-  deg?: number;  // Derece (opsiyonel)
+  deg?: number;
 }
 
 export interface LoaderProps {
@@ -11,24 +13,29 @@ export interface LoaderProps {
   color?: string;
 }
 
-export type Variants = 'color' | 'gradient';
-
 export interface ButtonProps {
   size?: ButtonSize;
-  type?: 'submit' | 'button' | 'reset';
+  type?: 'button' | 'submit' | 'reset';
   textColor?: string;
-  bgColor?:string;
+  bgColor?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
   radius?: number;
-  variant?: Variants;
-  gradient?: Gradient;
-  className?: string,
+  variant?: ButtonVariant;
+  gradient?: GradientProps;
   uppercase?: boolean;
   loading?: boolean;
   loaderProps?: LoaderProps;
-  loaderPosition?: 'left' | 'right' | 'center';
-  children?: React.ReactNode;
+  loaderPosition?: LoaderPosition;
+  children: React.ReactNode;
   disabled?: boolean;
+  className?: string;
+  'aria-label'?: string;
+}
+
+export interface ContainerProps {
+  width?: 'mobile' | 'tablet' | 'desktop' | number;
+  className?: string;
+  children: React.ReactNode;
 }

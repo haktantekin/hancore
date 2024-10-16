@@ -1,10 +1,29 @@
 import React from 'react';
 import { ButtonProps, LoaderProps } from '../types/type';
 
-export default function Button({
+const BUTTON_SIZES = {
+  small: '8px 12px',
+  medium: '10px 16px',
+  large: '12px 20px'
+};
+
+const Loader: React.FC<LoaderProps> = React.memo(({ size = 16, color }) => (
+  <span
+    style={{
+      width: size,
+      height: size,
+      border: `2px solid ${color}`,
+      borderRadius: '50%',
+      borderTopColor: 'transparent',
+      animation: 'spin 1s linear infinite',
+    }}
+  />
+));
+
+const Button: React.FC<ButtonProps> = React.memo(({
   size = 'medium',
   type = 'button',
-  textColor = 'blue',
+  textColor = 'gray',
   bgColor = '#FFFFFF',
   leftIcon,
   rightIcon,
@@ -18,12 +37,12 @@ export default function Button({
   loaderPosition = 'center',
   children,
   disabled = false,
-  className = ''
-}: Readonly<ButtonProps>) {
-
+  className = '',
+  'aria-label': ariaLabel,
+}) => {
   const getButtonStyles = (): React.CSSProperties => {
     const styles: React.CSSProperties = {
-      padding: size === 'small' ? '8px 12px' : size === 'large' ? '12px 20px' : '10px 16px',
+      padding: BUTTON_SIZES[size],
       borderRadius: radius,
       color: textColor,
       backgroundColor: bgColor,
@@ -52,10 +71,13 @@ export default function Button({
       style={getButtonStyles()}
       className={className}
       disabled={disabled}
+      aria-busy={loading}
+      aria-label={ariaLabel}
+      data-testid="custom-button"
     >
       {loading && loaderPosition === 'left' && <Loader size={loaderProps?.size} color={textColor} />}
       {leftIcon && !loading && <span style={{ marginRight: '8px' }}>{leftIcon}</span>}
-      {loading ? (
+      {loading && loaderPosition === 'center' ? (
         <Loader size={loaderProps?.size} color={textColor} />
       ) : (
         <span>{children}</span>
@@ -64,17 +86,9 @@ export default function Button({
       {loading && loaderPosition === 'right' && <Loader size={loaderProps?.size} color={textColor} />}
     </button>
   );
-}
+});
 
-const Loader = ({ size = 16, color }: LoaderProps) => (
-  <span
-    style={{
-      width: size,
-      height: size,
-      border: `2px solid ${color}`,
-      borderRadius: '50%',
-      borderTopColor: 'transparent',
-      animation: 'spin 1s linear infinite',
-    }}
-  />
-);
+Button.displayName = 'Button';
+Loader.displayName = 'Loader';
+
+export default Button;

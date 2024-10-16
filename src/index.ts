@@ -1,5 +1,2 @@
-// Elements
-export * from './elements/Index';
-
-// Widgets
-// export * from './widgets/Index';
+export * from './elements';
+export * from './widgets';
