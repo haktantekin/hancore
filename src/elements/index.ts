@@ -1,2 +1,12 @@
 export { default as Button } from './Button';
 export { default as Container } from './Container';  
+export { default as Checkbox } from './Checkbox';
+export { default as Chip } from './Chip';
+export { default as ColorPicker } from './ColorPicker';
+export { default as Fieldset } from './Fieldset';
+export { default as FileInput } from './FileInput';
+export { default as Flex } from './Flex';  
+export { default as Grid } from './Grid';
+export { default as Group } from './Group';
+export { default as SimpleGrid } from './SimpleGrid';
+export { default as TextInput } from './TextInput';
