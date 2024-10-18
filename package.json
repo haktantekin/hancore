@@ -1,6 +1,6 @@
 {
   "name": "hancore",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "MIT",
   "author": "Haktan Tekin",
   "scripts": {
@@ -14,6 +14,10 @@
   "module": "es/index.js",
   "unpkg": "dist/hancore.min.js",
   "typings": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haktantekin/hancore"
+  },
   "exports": {
     ".": {
       "import": "./es/index.js",

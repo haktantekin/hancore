@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState, useCallback } from 'react';
 import { FileInputProps } from 'types/type';
 
 const FileInput = forwardRef<HTMLInputElement, FileInputProps>(({
@@ -35,17 +35,33 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(({
   ...others
 }, ref) => {
   const [focused, setFocused] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const innerRef = useRef<HTMLInputElement | null>(null);
+
+  const setRefs = useCallback(
+    (node: HTMLInputElement | null) => {
+      innerRef.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    },
+    [ref]
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    onChange?.(multiple ? Array.from(files || []) : files?.[0] || null);
+    if (files) {
+      onChange?.(multiple ? Array.from(files) : files[0] || null);
+    } else {
+      onChange?.(null);
+    }
   };
 
   const handleClear = () => {
     onChange?.(multiple ? [] : null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+    if (innerRef.current) {
+      innerRef.current.value = '';
     }
   };
 
@@ -105,7 +121,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(({
   `.trim();
 
   const renderValue = () => {
-    if (valueComponent) {
+    if (valueComponent && value !== undefined) {
       return valueComponent({ value });
     }
     if (multiple) {
@@ -141,7 +157,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(({
               </div>
               <input
                 type="file"
-                ref={ref || fileInputRef}
+                ref={setRefs}
                 className="sr-only"
                 onChange={handleChange}
                 onFocus={handleFocus}
@@ -176,8 +192,6 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(({
           return error && (
             <p key={index} className="text-sm text-red-500 mt-1">{error}</p>
           );
-        default:
-          return null;
       }
     });
   };
