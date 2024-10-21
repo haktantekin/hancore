@@ -1,4 +1,3 @@
-export { default as Button } from './Button';
 export { default as Container } from './Container';  
 export { default as Checkbox } from './Checkbox';
 export { default as Chip } from './Chip';
@@ -18,3 +17,14 @@ export { default as Rating } from './Rating';
 export { default as Switch } from './Switch';
 export { default as SimpleGrid } from './SimpleGrid';
 export { default as TextInput } from './TextInput';
+
+
+export { default as Button } from './Button';
+export { default as Tooltip } from './Tooltip';
+export { default as CloseButton } from './CloseButton';
+export { default as CopyButton } from './CopyButton';
+export { default as FileButton } from './FileButton';
+
+export { default as Breadcrumbs } from './Breadcrumbs';
+export { default as Burger } from './Burger';
+

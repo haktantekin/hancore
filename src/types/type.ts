@@ -20,25 +20,20 @@ export interface LoaderProps {
   color?: string;
 }
 
-export interface ButtonProps {
-  size?: ButtonSize;
-  type?: 'button' | 'submit' | 'reset';
-  textColor?: string;
-  bgColor?: string;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'filled' | 'light' | 'outline' | 'subtle' | 'white' | 'default' | 'gradient';
+  color?: HanColor;
+  size?: HanSize;
+  radius?: HanSize;
+  fullWidth?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  fullWidth?: boolean;
-  radius?: number;
-  variant?: ButtonVariant;
-  gradient?: GradientProps;
   uppercase?: boolean;
+  compact?: boolean;
   loading?: boolean;
-  loaderProps?: LoaderProps;
-  loaderPosition?: LoaderPosition;
-  children: React.ReactNode;
-  disabled?: boolean;
-  className?: string;
-  'aria-label'?: string;
+  loaderProps?: React.ComponentPropsWithoutRef<'div'>;
+  loaderPosition?: 'left' | 'right';
+  gradient?: { from: string; to: string; deg?: number };
 }
 
 export interface ContainerProps {
@@ -434,4 +429,96 @@ export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTex
   rightSectionWidth?: number | string;
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   inputWrapperOrder?: InputWrapperOrder[];
+}
+
+type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
+type TooltipColor = 'dark' | 'light';
+type TooltipRadius = 'sm' | 'md' | 'lg';
+
+
+export interface TooltipProps {
+  children: React.ReactNode;
+  label: React.ReactNode;
+  position?: TooltipPosition;
+  withArrow?: boolean;
+  opened?: boolean;
+  disabled?: boolean;
+  offset?: number;
+  transition?: string;
+  transitionDuration?: number;
+  multiline?: boolean;
+  width?: number | string;
+  color?: TooltipColor;
+  radius?: TooltipRadius;
+  withinPortal?: boolean;
+  inline?: boolean;
+  closeDelay?: number;
+  openDelay?: number;
+  zIndex?: number;
+  gutter?: number;
+  arrowSize?: number;
+  arrowOffset?: number;
+  arrowRadius?: number;
+  events?: { hover?: boolean; focus?: boolean; touch?: boolean };
+  keepMounted?: boolean;
+  positionDependencies?: React.DependencyList;
+  clickOutsideEvents?: string[];
+  id?: string;
+  initialize?: boolean;
+}
+
+import React from 'react';
+
+export interface CloseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: HanSize;
+  radius?: HanSize;
+  variant?: 'hover' | 'filled' | 'light' | 'outline' | 'transparent' | 'white' | 'default';
+  color?: HanColor;
+  iconSize?: number;
+  disabled?: boolean;
+}
+
+export interface CopyButtonProps {
+  children: (props: { copy: () => void; copied: boolean }) => React.ReactNode;
+  value: string;
+  timeout?: number;
+  onCopied?: () => void;
+  disabled?: boolean;
+}
+
+export interface FileButtonProps<Multiple extends boolean = false> {
+  onChange: (payload: Multiple extends true ? File[] : File | null) => void;
+  children: (props: { onClick: () => void }) => React.ReactNode;
+  multiple?: Multiple;
+  accept?: string;
+  name?: string;
+  form?: string;
+  resetRef?: React.ForwardedRef<() => void>;
+  disabled?: boolean;
+  capture?: boolean | 'user' | 'environment';
+  inputProps?: React.ComponentPropsWithoutRef<'input'>;
+}
+
+export interface BreadcrumbsProps extends React.ComponentPropsWithoutRef<'div'> {
+  separator?: React.ReactNode;
+  separatorMargin?: HanSize;
+  spacing?: HanSize | number;
+  classNames?: {
+    root?: string;
+    separator?: string;
+    breadcrumb?: string;
+  };
+  styles?: {
+    root?: React.CSSProperties;
+    separator?: React.CSSProperties;
+    breadcrumb?: React.CSSProperties;
+  };
+}
+
+export interface BurgerProps extends React.ComponentPropsWithoutRef<'button'> {
+  opened: boolean;
+  onClick: () => void;
+  size?: HanSize;
+  color?: string;
+  transitionDuration?: number;
 }
