@@ -3,11 +3,12 @@ export type ButtonVariant = 'color' | 'gradient';
 export type LoaderPosition = 'left' | 'center' | 'right';
 
 type HanSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-type HanColor = 
+type HanColor =
   | 'blue'
   | 'green'
   | 'red'
   | string & { __brand: 'other' };
+
 
 export interface GradientProps {
   from: string;
@@ -521,4 +522,119 @@ export interface BurgerProps extends React.ComponentPropsWithoutRef<'button'> {
   size?: HanSize;
   color?: string;
   transitionDuration?: number;
+}
+
+
+export interface NavLinkProps extends React.ComponentPropsWithoutRef<'a'> {
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  icon?: React.ReactNode;
+  rightSection?: React.ReactNode;
+  active?: boolean;
+  color?: HanColor;
+  variant?: 'light' | 'filled' | 'subtle';
+  disabled?: boolean;
+  noWrap?: boolean;
+  classNames?: {
+    root?: string;
+    icon?: string;
+    rightSection?: string;
+    label?: string;
+    description?: string;
+  };
+  styles?: {
+    root?: React.CSSProperties;
+    icon?: React.CSSProperties;
+    rightSection?: React.CSSProperties;
+    label?: React.CSSProperties;
+    description?: React.CSSProperties;
+  };
+}
+
+export interface PaginationProps {
+  total: number;
+  value?: number;
+  onChange?: (page: number) => void;
+  defaultValue?: number;
+  siblings?: number;
+  boundaries?: number;
+  color?: HanColor;
+  radius?: HanSize;
+  size?: HanSize;
+  withEdges?: boolean;
+  withControls?: boolean;
+  disabled?: boolean;
+  nextLabel?: string;
+  previousLabel?: string;
+  firstLabel?: string;
+  lastLabel?: string;
+  dotsLabel?: string;
+}
+
+export interface StepperProps {
+  active?: number;
+  onStepClick?: (step: number) => void;
+  color?: string;
+  iconSize?: number;
+  orientation?: 'horizontal' | 'vertical';
+  size?: HanSize;
+  children: React.ReactNode;
+  allowNextStepsSelect?: boolean;
+  completedIcon?: React.ReactNode;
+  contentPadding?: string | number;
+  iconPosition?: 'left' | 'right';
+  styles?: Partial<{
+    root: string;
+    step: string;
+    stepIcon: string;
+    stepLabel: string;
+  }>;
+  classNames?: Partial<{
+    root: string;
+    step: string;
+    stepIcon: string;
+    stepLabel: string;
+  }>;
+  breakpoint?: string;
+}
+
+export interface StepProps {
+  label: string;
+  icon: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+export interface StepCompletedProps {
+  children?: React.ReactNode;
+}
+
+export interface TabsProps {
+  active?: number;
+  onTabChange?: (tabIndex: number) => void;
+  children: React.ReactNode;
+  color?: string;
+  orientation?: 'horizontal' | 'vertical';
+  position?: 'left' | 'center' | 'right' | 'apart';
+  variant?: 'default' | 'outline' | 'pills';
+  styles?: Partial<{
+    root: string;
+    header: string;
+    tab: string;
+    content: string;
+  }>;
+  classNames?: Partial<{
+    root: string;
+    header: string;
+    tab: string;
+    content: string;
+  }>;
+}
+
+export interface TabProps {
+  label: string;
+  children?: React.ReactNode;
+}
+
+export interface TabContentProps {
+  children?: React.ReactNode;
 }

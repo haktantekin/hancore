@@ -27,4 +27,8 @@ export { default as FileButton } from './FileButton';
 
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Burger } from './Burger';
+export { default as NavLink } from './NavLink';
+export { default as Pagination } from './Pagination';
+export { default as Stepper } from './Stepper';
+export { default as Tabs } from './Tabs';
 
