@@ -638,3 +638,157 @@ export interface TabProps {
 export interface TabContentProps {
   children?: React.ReactNode;
 }
+
+
+export interface NotificationProps {
+  title?: React.ReactNode;
+  message: React.ReactNode;
+  color?: HanColor;
+  radius?: HanSize;
+  icon?: React.ReactNode;
+  onClose?: () => void;
+  loading?: boolean;
+  disallowClose?: boolean;
+  closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  className?: string;
+  style?: React.CSSProperties;
+  withCloseButton?: boolean;
+  variant?: "filled" | "outline" | "light";
+}
+
+export interface ProgressProps {
+  value: number;
+  color?: HanColor;
+  radius?: HanSize;
+  size?: HanSize;
+  striped?: boolean;
+  animate?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface DialogProps {
+  opened: boolean;
+  onClose?: () => void;
+  title?: React.ReactNode;
+  children?: React.ReactNode;
+  withCloseButton?: boolean;
+  size?: HanSize;
+  radius?: HanSize;
+  className?: string;
+  style?: React.CSSProperties;
+  overlayColor?: string;
+  overlayOpacity?: number;
+  overlayBlur?: number;
+}
+
+export interface DrawerProps {
+  opened: boolean;
+  onClose?: () => void;
+  position?: "left" | "right" | "top" | "bottom";
+  size?: string;
+  overlayColor?: string;
+  overlayOpacity?: number;
+  overlayBlur?: number;
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  withCloseButton?: boolean;
+}
+
+export interface HoverCardProps {
+  children: React.ReactNode;
+  content: React.ReactNode;
+  position?: "top" | "right" | "bottom" | "left";
+  radius?: HanSize;
+  shadow?: "sm" | "md" | "lg" | "xl";
+  withArrow?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface ModalProps {
+  opened: boolean;
+  onClose: () => void;
+  title?: React.ReactNode;
+  children: React.ReactNode;
+  overlayColor?: string;
+  overlayOpacity?: number;
+  overlayBlur?: number;
+  size?: HanSize;
+  radius?: HanSize;
+  centered?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  withCloseButton?: boolean;
+}
+
+export interface AccordionItem {
+  label: React.ReactNode;
+  content: React.ReactNode;
+}
+
+export interface AccordionProps {
+  items: AccordionItem[];
+  multiple?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface NumberFormatterProps {
+  value: number | string;
+  format?: Intl.NumberFormatOptions;
+  locale?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface TimelineItem {
+  title: React.ReactNode; 
+  content: React.ReactNode;
+  timestamp?: React.ReactNode;
+}
+
+export interface TimelineProps {
+  items: TimelineItem[];
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+// Blockquote.types.ts
+
+export interface BlockquoteProps {
+  children: React.ReactNode;
+  author?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface TableColumn {
+  title: string;
+  dataIndex: string;
+}
+
+export interface TableProps {
+  columns: TableColumn[];
+  data: Record<string, any>[];
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface CollapseProps {
+  children: React.ReactNode;
+  isOpen?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  onToggle?: () => void;
+}
+
+export interface ScrollAreaProps {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  horizontal?: boolean;
+  vertical?: boolean;
+  onScroll?: (event: React.UIEvent<HTMLDivElement>) => void;
+}
